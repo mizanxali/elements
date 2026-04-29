@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  color: #f4f4f6;
+  background:
+    radial-gradient(1200px 800px at 80% -10%, rgba(177, 151, 252, 0.18), transparent 60%),
+    radial-gradient(900px 700px at -10% 110%, rgba(247, 131, 172, 0.16), transparent 60%),
+    linear-gradient(160deg, #0a0a1f 0%, #14092a 45%, #1a0b2e 100%);
+  background-attachment: fixed;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
