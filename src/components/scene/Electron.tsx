@@ -5,9 +5,11 @@ type Props = {
 
 export function Electron({ position, color }: Props) {
   return (
-    <mesh position={position} castShadow={false} receiveShadow={false}>
-      <sphereGeometry args={[0.1, 16, 16]} />
-      <meshBasicMaterial color={color} toneMapped={false} />
-    </mesh>
+    <group position={position}>
+      <mesh castShadow={false} receiveShadow={false}>
+        <sphereGeometry args={[0.18, 18, 18]} />
+        <meshBasicMaterial color={color} toneMapped={false} />
+      </mesh>
+    </group>
   );
 }

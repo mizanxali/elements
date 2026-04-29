@@ -5,7 +5,7 @@
 @tailwind utilities;
 
 :root {
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 html,
@@ -17,12 +17,22 @@ body,
 
 body {
   font-family: 'Inter', system-ui, sans-serif;
-  color: #f4f4f6;
+  color: #111111;
   background:
-    radial-gradient(1200px 800px at 80% -10%, rgba(177, 151, 252, 0.18), transparent 60%),
-    radial-gradient(900px 700px at -10% 110%, rgba(247, 131, 172, 0.16), transparent 60%),
-    linear-gradient(160deg, #0a0a1f 0%, #14092a 45%, #1a0b2e 100%);
+    linear-gradient(90deg, rgba(17, 17, 17, 0.07) 1px, transparent 1px),
+    linear-gradient(0deg, rgba(17, 17, 17, 0.07) 1px, transparent 1px),
+    linear-gradient(135deg, #fff7d1 0 24%, #ffffff 24% 58%, #d9fff1 58% 100%);
+  background-size: 28px 28px, 28px 28px, 100% 100%;
   background-attachment: fixed;
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
+}
+
+* {
+  scrollbar-color: #111111 #fff3a3;
+}
+
+::selection {
+  background: #111111;
+  color: #fff15a;
 }

@@ -20,19 +20,20 @@ export function ElementCell({ element, selected, onSelect, style }: Props) {
       title={`${element.atomicNumber} · ${element.name}`}
       style={{ backgroundColor: color, ...style }}
       className={clsx(
-        'group relative aspect-square w-full overflow-hidden rounded-[4px]',
-        'text-black transition-transform duration-150 ease-out',
-        'hover:z-10 hover:scale-[1.18] hover:ring-2 hover:ring-white/80 hover:shadow-lg',
-        'focus:outline-none focus-visible:z-10 focus-visible:ring-2 focus-visible:ring-white',
-        selected && 'z-10 scale-[1.12] ring-2 ring-white brightness-110',
+        'group relative aspect-square w-full overflow-hidden rounded-md ring-1 ring-black/10',
+        'text-black shadow-sm transition duration-150 ease-out',
+        'hover:z-10 hover:-translate-y-0.5 hover:scale-[1.08] hover:shadow-md hover:ring-black/25',
+        'focus:outline-none focus-visible:z-10 focus-visible:ring-2 focus-visible:ring-black/40',
+        selected && 'z-10 -translate-y-0.5 scale-[1.06] ring-2 ring-black/45 brightness-110 shadow-md',
       )}
     >
-      <span className="absolute left-[3px] top-[1px] text-[8px] font-medium leading-none opacity-70">
+      <span className="absolute left-[3px] top-[2px] font-mono text-[8px] font-black leading-none opacity-75">
         {element.atomicNumber}
       </span>
-      <span className="absolute inset-0 flex items-center justify-center font-display text-[13px] font-bold leading-none">
+      <span className="absolute inset-0 flex items-center justify-center font-display text-[13px] font-black leading-none">
         {element.symbol}
       </span>
+      <span className="absolute bottom-0 left-0 h-1 w-full bg-black/20 opacity-0 transition-opacity group-hover:opacity-100" />
     </button>
   );
 }

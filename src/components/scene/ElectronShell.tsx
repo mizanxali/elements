@@ -1,15 +1,21 @@
-import { useMemo, useRef } from 'react';
-import { useFrame } from '@react-three/fiber';
-import type { Group } from 'three';
-import { Electron } from './Electron';
+import { useMemo, useRef } from "react";
+import { useFrame } from "@react-three/fiber";
+import type { Group } from "three";
+import { Electron } from "./Electron";
+
+const SHELL_COLOR = "#5f6673";
 
 type Props = {
   shellIndex: number;
   electronCount: number;
-  color: string;
+  electronColor: string;
 };
 
-export function ElectronShell({ shellIndex, electronCount, color }: Props) {
+export function ElectronShell({
+  shellIndex,
+  electronCount,
+  electronColor,
+}: Props) {
   const groupRef = useRef<Group>(null);
 
   const radius = 2.0 + shellIndex * 1.4;
@@ -33,12 +39,17 @@ export function ElectronShell({ shellIndex, electronCount, color }: Props) {
   return (
     <group ref={groupRef}>
       <mesh>
-        <torusGeometry args={[radius, 0.01, 8, 96]} />
-        <meshBasicMaterial color={color} transparent opacity={0.35} />
+        <torusGeometry args={[radius, 0.026, 10, 128]} />
+        <meshBasicMaterial
+          color={SHELL_COLOR}
+          opacity={1}
+          toneMapped={false}
+          transparent={false}
+        />
       </mesh>
       {electronAngles.map((angle, i) => (
         <group key={i} rotation={[0, 0, angle]}>
-          <Electron position={[radius, 0, 0]} color={color} />
+          <Electron position={[radius, 0, 0]} color={electronColor} />
         </group>
       ))}
     </group>

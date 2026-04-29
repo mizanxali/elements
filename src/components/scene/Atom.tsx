@@ -10,10 +10,15 @@ export function Atom() {
   const accent = colorFor(element.category);
 
   return (
-    <group>
+    <group key={element.atomicNumber}>
       <Nucleus protons={protons} neutrons={neutrons} />
       {element.shells.map((count, i) => (
-        <ElectronShell key={i} shellIndex={i} electronCount={count} color={accent} />
+        <ElectronShell
+          key={`${element.atomicNumber}-${i}`}
+          shellIndex={i}
+          electronCount={count}
+          electronColor={accent}
+        />
       ))}
     </group>
   );

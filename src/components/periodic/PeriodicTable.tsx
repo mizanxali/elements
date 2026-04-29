@@ -15,9 +15,9 @@ export function PeriodicTable() {
   const actinides = elements.filter((e) => isActinide(e.atomicNumber));
 
   return (
-    <div className="flex min-w-[520px] flex-col gap-2">
+    <div className="flex min-w-[580px] flex-col gap-2 p-1">
       <div
-        className="grid gap-[3px]"
+        className="grid gap-1"
         style={{
           gridTemplateColumns: 'repeat(18, minmax(26px, 1fr))',
           gridTemplateRows: 'repeat(7, minmax(0, 1fr))',
@@ -56,7 +56,7 @@ export function PeriodicTable() {
       </div>
 
       <div
-        className="grid gap-[3px] pl-[calc((100%/18)*2)]"
+        className="grid gap-1 pl-[calc((100%/18)*2)]"
         style={{ gridTemplateColumns: 'repeat(15, minmax(26px, 1fr))' }}
       >
         {lanthanides.map((el) => (
@@ -107,14 +107,14 @@ function PlaceholderCell({
       style={{
         gridColumnStart: gridColumn,
         gridRowStart: gridRow,
-        backgroundColor: `${color}33`,
-        borderColor: color,
+        backgroundColor: '#ffffff',
+        borderColor: `${color}99`,
       }}
       className={
-        'aspect-square w-full rounded-[4px] border border-dashed text-[8px] font-semibold ' +
-        'leading-none text-white/80 transition-transform duration-150 hover:scale-[1.1] ' +
-        'hover:ring-1 hover:ring-white/60 focus:outline-none ' +
-        (active ? 'ring-2 ring-white' : '')
+        'aspect-square w-full rounded-md border border-dashed text-[8px] font-black ' +
+        'leading-none text-black shadow-sm transition-transform duration-150 hover:-translate-y-0.5 hover:scale-[1.06] ' +
+        'focus:outline-none focus-visible:ring-2 focus-visible:ring-black/30 ' +
+        (active ? 'ring-2 ring-black/40' : '')
       }
     >
       {label}
