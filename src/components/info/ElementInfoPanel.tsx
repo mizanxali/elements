@@ -103,6 +103,10 @@ export function ElementInfoPanel({
           </button>
         </div>
 
+        <div className="md:hidden">
+          <PrevNextControls compact />
+        </div>
+
         <div
           className={clsx(
             "min-h-0 flex-1 overflow-y-auto md:block",
@@ -112,7 +116,7 @@ export function ElementInfoPanel({
           <ElementCard element={element} />
         </div>
 
-        <div className="pt-1 md:mt-auto md:pt-2">
+        <div className="hidden pt-1 md:mt-auto md:block md:pt-2">
           <PrevNextControls />
         </div>
       </div>
