@@ -1,4 +1,3 @@
-import { useState } from "react";
 import clsx from "clsx";
 import { PeriodicTable } from "./PeriodicTable";
 import {
@@ -7,9 +6,12 @@ import {
   PanelBottomOpen,
 } from "../ui/Icons";
 
-export function PeriodicDrawer() {
-  const [isOpen, setIsOpen] = useState(false);
+type PeriodicDrawerProps = {
+  isOpen: boolean;
+  onOpenChange: (isOpen: boolean) => void;
+};
 
+export function PeriodicDrawer({ isOpen, onOpenChange }: PeriodicDrawerProps) {
   return (
     <section
       id="periodic-table-drawer"
@@ -22,7 +24,7 @@ export function PeriodicDrawer() {
     >
       <button
         type="button"
-        onClick={() => setIsOpen((value) => !value)}
+        onClick={() => onOpenChange(!isOpen)}
         aria-expanded={isOpen}
         aria-controls="periodic-table-drawer-content"
         aria-label={isOpen ? "Collapse periodic table" : "Expand periodic table"}
