@@ -15,11 +15,11 @@ export function PeriodicTable() {
   const actinides = elements.filter((e) => isActinide(e.atomicNumber));
 
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex min-w-[520px] flex-col gap-2">
       <div
         className="grid gap-[3px]"
         style={{
-          gridTemplateColumns: 'repeat(18, minmax(0, 1fr))',
+          gridTemplateColumns: 'repeat(18, minmax(26px, 1fr))',
           gridTemplateRows: 'repeat(7, minmax(0, 1fr))',
         }}
       >
@@ -57,7 +57,7 @@ export function PeriodicTable() {
 
       <div
         className="grid gap-[3px] pl-[calc((100%/18)*2)]"
-        style={{ gridTemplateColumns: 'repeat(15, minmax(0, 1fr))' }}
+        style={{ gridTemplateColumns: 'repeat(15, minmax(26px, 1fr))' }}
       >
         {lanthanides.map((el) => (
           <ElementCell
