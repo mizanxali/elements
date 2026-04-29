@@ -1,4 +1,3 @@
-import { useState } from "react";
 import clsx from "clsx";
 import { useSelectedElement } from "../../hooks/useSelectedElement";
 import { colorFor } from "../../data/categoryColors";
@@ -22,15 +21,16 @@ export function ElementInfoPanel({
 }: ElementInfoPanelProps) {
   const element = useSelectedElement();
   const accent = colorFor(element.category);
-  const [expanded, setExpanded] = useState(false);
 
   return (
     <aside
       style={{ ["--accent" as never]: accent }}
       className={clsx(
-        "relative flex min-h-0 flex-col overflow-hidden border-t border-black/10 bg-[#fffaf0]/95",
-        "md:shrink-0 md:border-l md:border-t-0 md:transition-[width] md:duration-300 md:ease-out",
-        isOpen ? "md:w-[360px]" : "md:w-12",
+        "flex min-h-0 shrink-0 flex-col overflow-hidden border-t border-black/10 bg-[#fffaf0]/95 transition-[height,max-height,width] duration-300 ease-out",
+        "md:h-auto md:max-h-none md:flex-row md:border-l md:border-t-0",
+        isOpen
+          ? "h-[42vh] max-h-[420px] md:w-[360px]"
+          : "h-16 max-h-16 md:w-12",
       )}
     >
       <button
@@ -41,8 +41,8 @@ export function ElementInfoPanel({
         aria-label={isOpen ? "Collapse element info" : "Expand element info"}
         title={isOpen ? "Collapse element info" : "Expand element info"}
         className={clsx(
-          "absolute inset-y-0 left-0 z-10 hidden w-12 flex-col items-center gap-3 border-r border-black/10 bg-[#c8f7ff] px-2 py-3 text-black shadow-[-8px_0_24px_rgba(0,0,0,0.08)] md:flex",
-          "transition hover:bg-[#fff15a] focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-black/35",
+          "hidden w-12 shrink-0 flex-col items-center gap-3 border-r border-black/10 bg-[#f7f2e6] px-2 py-3 text-black md:flex",
+          "transition hover:bg-[#fff9df] focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-black/35",
         )}
       >
         <GripVertical className="h-5 w-5 shrink-0" />
@@ -61,58 +61,58 @@ export function ElementInfoPanel({
         </span>
       </button>
 
-      <div
-        id="element-info-panel-content"
+      <button
+        type="button"
+        onClick={() => onOpenChange(!isOpen)}
+        aria-expanded={isOpen}
+        aria-controls="element-info-panel-content"
+        aria-label={isOpen ? "Collapse element info" : "Expand element info"}
+        title={isOpen ? "Collapse element info" : "Expand element info"}
         className={clsx(
-          "flex min-h-0 flex-1 flex-col gap-4 p-4 md:gap-5 md:p-5 md:pl-16",
-          "transition-opacity duration-200",
-          !isOpen && "md:pointer-events-none md:opacity-0",
+          "flex h-16 shrink-0 items-center justify-between gap-3 bg-[#f7f2e6] px-4 text-left text-black md:hidden",
+          "transition hover:bg-[#fff9df] focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-black/35",
         )}
       >
-        <div className="flex items-center justify-between gap-3 md:hidden">
-          <div className="flex min-w-0 items-center gap-3">
-            <div
-              className="rounded-md px-2 py-1 font-display text-3xl font-black leading-none text-black"
-              style={{ backgroundColor: "var(--accent)" }}
-            >
-              {element.symbol}
+        <div className="flex min-w-0 items-center gap-3">
+          <div
+            className="rounded-md px-2 py-1 font-display text-3xl font-black leading-none text-black"
+            style={{ backgroundColor: "var(--accent)" }}
+          >
+            {element.symbol}
+          </div>
+          <div className="min-w-0">
+            <div className="truncate text-sm font-black uppercase text-black">
+              {element.name}
             </div>
-            <div className="min-w-0">
-              <div className="truncate text-sm font-black uppercase text-black">
-                {element.name}
-              </div>
-              <div className="font-mono text-[10px] font-bold text-black/60">
-                Z {element.atomicNumber} · {element.atomicMass} u
-              </div>
+            <div className="font-mono text-[10px] font-bold text-black/60">
+              Z {element.atomicNumber} · {element.atomicMass} u
             </div>
           </div>
-          <button
-            type="button"
-            onClick={() => setExpanded((v) => !v)}
-            aria-expanded={expanded}
-            aria-label={expanded ? "Collapse details" : "Expand details"}
-            title={expanded ? "Collapse details" : "Expand details"}
-            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-black/5 text-black transition hover:bg-[#fff15a] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)]/50"
-          >
-            <ChevronDown
-              className={clsx(
-                "h-5 w-5 transition-transform",
-                expanded ? "rotate-180" : "",
-              )}
-            />
-          </button>
         </div>
+        <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-white shadow-sm ring-1 ring-black/10">
+          <ChevronDown
+            className={clsx(
+              "h-5 w-5 transition-transform",
+              isOpen ? "rotate-180" : "",
+            )}
+          />
+        </span>
+      </button>
 
+      <div
+        id="element-info-panel-content"
+        aria-hidden={!isOpen}
+        className={clsx(
+          "flex min-h-0 flex-1 flex-col gap-4 p-4 md:gap-5 md:p-5",
+          "transition-opacity duration-200",
+          !isOpen && "pointer-events-none opacity-0",
+        )}
+      >
         <div className="md:hidden">
           <PrevNextControls compact />
         </div>
 
-        <div
-          className={clsx(
-            "min-h-0 flex-1 overflow-y-auto md:block",
-            expanded ? "block" : "hidden",
-          )}
-        >
+        <div className="min-h-0 flex-1 overflow-y-auto">
           <ElementCard element={element} />
         </div>
 

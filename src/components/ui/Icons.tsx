@@ -88,3 +88,23 @@ export function PanelRightClose(props: IconProps) {
     </IconBase>
   );
 }
+
+export function PanelBottomOpen(props: IconProps) {
+  return (
+    <IconBase {...props}>
+      <rect width="18" height="18" x="3" y="3" rx="2" />
+      <path d="M3 15h18" />
+      <path d="m9 8 3-3 3 3" />
+    </IconBase>
+  );
+}
+
+export function PanelBottomClose(props: IconProps) {
+  return (
+    <IconBase {...props}>
+      <rect width="18" height="18" x="3" y="3" rx="2" />
+      <path d="M3 15h18" />
+      <path d="m9 11 3 3 3-3" />
+    </IconBase>
+  );
+}

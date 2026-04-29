@@ -10,7 +10,7 @@ export function AppShell() {
 
   return (
     <div className="flex h-screen h-[100dvh] w-screen flex-col overflow-hidden bg-[#fff9df] text-black">
-      <div className="flex min-h-0 flex-1 flex-col pb-11 md:flex-row">
+      <div className="flex min-h-0 flex-1 flex-col md:flex-row">
         <section className="relative min-h-[45vh] flex-1 overflow-hidden border-b border-black/10 bg-[#f7f2e6] md:min-h-0 md:border-b-0 md:border-r">
           <AtomScene />
         </section>

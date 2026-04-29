@@ -22,7 +22,7 @@ export function PrevNextControls({ compact = false }: { compact?: boolean }) {
         icon={<ChevronLeft className="h-4 w-4" />}
         compact={compact}
       />
-      <span className="rounded-md bg-[#fff15a] px-2.5 py-1 font-mono text-xs font-black text-black">
+      <span className="rounded-md bg-[#f7f2e6] px-2.5 py-1 font-mono text-xs font-black text-black ring-1 ring-black/10">
         Z {selected}/118
       </span>
       <Button
