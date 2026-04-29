@@ -5,8 +5,6 @@ type ElementStore = {
   setSelected: (z: number) => void;
   next: () => void;
   prev: () => void;
-  autoRotate: boolean;
-  toggleAutoRotate: () => void;
 };
 
 const MIN_Z = 1;
@@ -18,16 +16,14 @@ const clamp = (z: number) => Math.min(MAX_Z, Math.max(MIN_Z, z));
 
 export function ElementStoreProvider({ children }: { children: ReactNode }) {
   const [selected, setSelectedRaw] = useState<number>(1);
-  const [autoRotate, setAutoRotate] = useState<boolean>(true);
 
   const setSelected = useCallback((z: number) => setSelectedRaw(clamp(z)), []);
   const next = useCallback(() => setSelectedRaw((z) => clamp(z + 1)), []);
   const prev = useCallback(() => setSelectedRaw((z) => clamp(z - 1)), []);
-  const toggleAutoRotate = useCallback(() => setAutoRotate((v) => !v), []);
 
   const value = useMemo<ElementStore>(
-    () => ({ selected, setSelected, next, prev, autoRotate, toggleAutoRotate }),
-    [selected, setSelected, next, prev, autoRotate, toggleAutoRotate],
+    () => ({ selected, setSelected, next, prev }),
+    [selected, setSelected, next, prev],
   );
 
   return <ElementStoreContext.Provider value={value}>{children}</ElementStoreContext.Provider>;
