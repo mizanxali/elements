@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useKeyboardNav } from "../../hooks/useKeyboardNav";
 import { ElementInfoPanel } from "../info/ElementInfoPanel";
 import { PeriodicDrawer } from "../periodic/PeriodicDrawer";
@@ -8,6 +8,19 @@ export function AppShell() {
   useKeyboardNav();
   const [infoPanelOpen, setInfoPanelOpen] = useState(true);
   const [tableOpen, setTableOpen] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(max-width: 767px)");
+    const syncPanels = () => {
+      if (mediaQuery.matches && tableOpen && infoPanelOpen) {
+        setInfoPanelOpen(false);
+      }
+    };
+
+    syncPanels();
+    mediaQuery.addEventListener("change", syncPanels);
+    return () => mediaQuery.removeEventListener("change", syncPanels);
+  }, [infoPanelOpen, tableOpen]);
 
   const isMobileLayout = () =>
     typeof window !== "undefined" &&
